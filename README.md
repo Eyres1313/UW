@@ -7,6 +7,8 @@ Thank you for discussing with me the require – this is something I had not use
 •	File structures are something I am still getting my head around 
 
 First check if I can console log the dummy invoice – server running fine. 
+
+![Alt text](C:\Users\Kim Cook\Desktop/image1.png)
  -- insert image -- 
  
 // I chose to write the file with the print invoice function 
