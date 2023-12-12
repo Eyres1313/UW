@@ -1,0 +1,18 @@
+[
+    {
+        "id": "7fdab464-e0c4-45fb-94fe-c4dd376f6645",
+        "type":"energy","name":"electricity","amount":245
+      },
+      {
+        "id": "7e00377e-cd25-4473-83e6-77e29b537e02",
+        "type":"phone","name":"ee","amount":15
+      },
+      {
+        "id": "41f156b4-e634-4e30-8ddd-9ca176a1b230",
+        "type":"boradband","name":"utility","amount":20
+      },
+      {
+        "id": "2c4bdf19-ae49-4641-8bfc-82aa3971f7dd",
+        "type":"gas","name":"utility","amount":100
+      }
+]
