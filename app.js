@@ -3,17 +3,21 @@
 // PRACTICE READING AND WRITE WITH FS
 
 // Import required modules (included UUID for more time)
-const uuid = require("uuid");
-const fs = require("fs").promises;
-const path = require("path");
+// const uuid = require("uuid");
+// const fs = require("fs").promises;
+// const path = require("path");
 const express = require("express");
-const { json } = require("express");
-const addInvoice = require("./invoice");
-const getInvoices = require("./invoice");
-// const getInvoiceById = require("./invoice");
+// const { json } = require("express");
 
+// Import in the same place as it is from the same file
+const { addInvoice, getInvoices, getInvoiceById } = require("./invoice");
+
+// Set up express app and port number
 const app = express();
 const port = 3000;
+
+//Use this middleware to parse the JSON body of the request
+app.use(express.json());
 
 // create a dummy invoice to test console in app.js
 // const invoice = {
@@ -38,34 +42,23 @@ const port = 3000;
 
 app.get("/invoices", async function (req, res) {
   // call the function and store it in a variable
-  const invoiceResponse = await getInvoices();
-  res.json(invoiceResponse);
-  return invoiceResponse;
+  const invoices = await getInvoices();
+  return res.json(invoices);
+});
+
+// Request handler to get invoice by ID
+app.get("/invoices/:id", async function (req, res) {
+  // variable/request using the parameter id
+  const invoice = await getInvoiceById(req.params.id);
+  return res.json(invoice);
 });
 
 // Request handler to add an invoice
-
 app.post("/invoices", async function (req, res) {
-  const queryData = req.invoice;
-  console.log(queryData);
-  //   const invoiceType = queryData.invoices.type;
-  //   const invoiceName = queryData.invoicesname;
-  //   const invoiceAmount = queryData.invoices.amount;
-  //   const newInvoice = await addInvoice(invoiceType, invoiceName, invoiceAmount);
-
-  //   const responseAddInvoice = {
-  //     status: 201,
-  //     data: newInvoice,
-  //   };
-  //   res.json(responseAddInvoice);
+  const { type, name, amount } = req.body;
+  const newInvoice = await addInvoice(type, name, amount);
+  return res.json(newInvoice);
 });
-
-// Request handler to get invoice by ID - need to check with ROB
-// app.get("invoices/:id", async function (req, res) {
-//   // variable/request using the parameter id
-//   const invoiceById = await getInvoiceById(req.params.id);
-//   res.json(invoiceById);
-// });
 
 // Server
 app.listen(port, () => {

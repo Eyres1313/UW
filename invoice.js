@@ -13,8 +13,8 @@ const filePath = path.resolve(process.cwd(), "invoices.json");
 // define a function that writes an invoice
 
 async function addInvoice(type, name, amount) {
-  const invoiceJSON = await fs.readFile(filePath, "utf-8");
-  const invoices = JSON.parse(invoiceJSON);
+  const JSONData = await fs.readFile(filePath, "utf-8");
+  const invoices = JSON.parse(JSONData);
 
   const newInvoice = {
     id: uuid.v4(),
@@ -36,20 +36,15 @@ async function getInvoices() {
   return invoices;
 }
 
-// Define a function to get an invoice by ID - check with Rob 
-// async function getInvoiceById(id) {
-//   const invoiceJSON = await fs.readFile(filePath, "utf-8");
-//   const invoice = JSON.parse(invoiceJSON);
-//   if (invoice.id === id) {
-//     return invoice;
-//   } else null;
-// }
+// Define a function to get an invoice by ID
+async function getInvoiceById(id) {
+  const JSONData = await fs.readFile(filePath, "utf-8");
+  const invoices = JSON.parse(JSONData);
+
+}
 
 // new way to export functions
-
-module.exports = addInvoice;
-module.exports = getInvoices;
-// module.exports = getInvoiceById;
+module.exports = { addInvoice, getInvoices, getInvoiceById };
 
 // create a dummy invoice to test console in app.js
 // const invoice = {
