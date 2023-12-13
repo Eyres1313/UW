@@ -1,5 +1,5 @@
 // REQUIRE IS USED MORE WITH COMMON js (CHECKED IN NOTES)
-
+// add
 // PRACTICE READING AND WRITE WITH FS
 
 // Import required modules (included UUID for more time)
